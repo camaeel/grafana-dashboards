@@ -64,7 +64,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(go_goroutines{source=\"$source\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"})",
+          "expr": "sum(go_goroutines{ namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"})",
           "refId": "A"
         }
       ],
@@ -150,7 +150,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(go_gc_duration_seconds{source=\"$source\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"}) by (quantile)",
+          "expr": "sum(go_gc_duration_seconds{ namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"}) by (quantile)",
           "legendFormat": "{{quantile}}",
           "refId": "A"
         }
@@ -237,7 +237,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{source=\"$source\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"}[5m]))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"}[5m]))",
           "refId": "A"
         }
       ],
@@ -323,7 +323,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_memory_working_set_bytes{source=\"$source\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"})",
+          "expr": "sum(container_memory_working_set_bytes{ namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"})",
           "refId": "A"
         }
       ],
@@ -409,7 +409,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_network_transmit_bytes_total{source=\"$source\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"}[5m]))",
+          "expr": "sum(rate(container_network_transmit_bytes_total{ namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"}[5m]))",
           "refId": "A"
         }
       ],
@@ -495,7 +495,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_network_receive_bytes_total{source=\"$source\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"}[5m]))",
+          "expr": "sum(rate(container_network_receive_bytes_total{ namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\"}[5m]))",
           "refId": "A"
         }
       ],
