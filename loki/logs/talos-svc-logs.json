@@ -52,7 +52,7 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
@@ -212,7 +212,7 @@
           "stream": "{source=\"talos_service\"}",
           "type": 1
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -237,10 +237,10 @@
           "stream": "{source=\"talos_service\", host=~\"$host\"}",
           "type": 1
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "type": "query"
       },
       {
@@ -271,6 +271,6 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Talos service logs",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
