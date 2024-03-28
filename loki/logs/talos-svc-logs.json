@@ -52,7 +52,7 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
@@ -110,32 +110,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "external-secrets/external-secrets-c7d456897-lx256"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -165,8 +140,8 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "sum(rate({source=\"kubernetes_logs\", namespace=~\"$namespace\", pod=~\"$pod\"} |= \"$filter\" [1m])) by (namespace,pod)",
-          "legendFormat": "{{ namespace }}/{{pod}}",
+          "expr": "sum(rate({source=\"talos_service\", service=~\"$service\"} |= \"$filter\" [1m])) by (service)",
+          "legendFormat": "{{  service }}",
           "queryType": "range",
           "refId": "A"
         }
@@ -203,7 +178,7 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "{source=\"kubernetes_logs\"} | json | line_format \"{{.message}}\"  |= \"$filter\"",
+          "expr": "{source=\"talos_service\", service=~\"$service\"} | json | line_format \"{{.service}} {{.msg}}\"  |= \"$filter\"",
           "queryType": "range",
           "refId": "A"
         }
@@ -229,37 +204,12 @@
         "hide": 0,
         "includeAll": true,
         "multi": true,
-        "name": "namespace",
+        "name": "service",
         "options": [],
         "query": {
-          "label": "namespace",
+          "label": "service",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"kubernetes_logs\"}",
-          "type": 1
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "allValue": ".*",
-        "current": {},
-        "datasource": {
-          "type": "loki",
-          "uid": "${DS_LOKI}"
-        },
-        "definition": "",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "pod",
-        "options": [],
-        "query": {
-          "label": "pod",
-          "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"kubernetes_logs\", namespace =~ \"$namespace\"}",
+          "stream": "{source=\"talos_service\"}",
           "type": 1
         },
         "refresh": 1,
@@ -295,7 +245,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Kubernetes logs",
-  "version": 9,
+  "title": "Talos service logs",
+  "version": 2,
   "weekStart": ""
 }
