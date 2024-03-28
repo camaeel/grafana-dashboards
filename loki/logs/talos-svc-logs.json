@@ -234,7 +234,7 @@
         "query": {
           "label": "service",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"talos_service\"}",
+          "stream": "{source=\"talos_service\", host=~\"$host\"}",
           "type": 1
         },
         "refresh": 1,
