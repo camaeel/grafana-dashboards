@@ -203,7 +203,7 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "{source=\"kubernetes_logs\"} | json | line_format \"{{.message}}\"  |= \"$filter\"",
+          "expr": "{source=\"kubernetes_logs\", namespace=~\"$namespace\", pod=~\"$pod\"} | json | line_format \"{{.message}}\"  |= \"$filter\"",
           "queryType": "range",
           "refId": "A"
         }
