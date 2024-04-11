@@ -165,7 +165,7 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "sum(rate({source=\"kubernetes_logs\", namespace=~\"$namespace\", pod=~\"$pod\"} |= \"$filter\" [1m])) by (namespace,pod)",
+          "expr": "sum(rate({job=\"kubernetes-logs\", namespace=~\"$namespace\", pod=~\"$pod\"} |= \"$filter\" [1m])) by (namespace,pod)",
           "legendFormat": "{{ namespace }}/{{pod}}",
           "queryType": "range",
           "refId": "A"
@@ -203,7 +203,7 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "{source=\"kubernetes_logs\", namespace=~\"$namespace\", pod=~\"$pod\"} | json | line_format \"{{.message}}\"  |= \"$filter\"",
+          "expr": "{job=\"kubernetes-logs\", namespace=~\"$namespace\", pod=~\"$pod\"} | json | line_format \"{{.message}}\"  |= \"$filter\"",
           "queryType": "range",
           "refId": "A"
         }
@@ -234,7 +234,7 @@
         "query": {
           "label": "namespace",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"kubernetes_logs\"}",
+          "stream": "{job=\"kubernetes-logs\"}",
           "type": 1
         },
         "refresh": 1,
@@ -259,7 +259,7 @@
         "query": {
           "label": "pod",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"kubernetes_logs\", namespace =~ \"$namespace\"}",
+          "stream": "{job=\"kubernetes-logs\", namespace =~ \"$namespace\"}",
           "type": 1
         },
         "refresh": 1,

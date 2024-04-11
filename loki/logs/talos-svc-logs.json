@@ -140,7 +140,7 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "sum(rate({source=\"talos_service\",host=~\"$host\", service=~\"$service\"} |= \"$filter\" [1m])) by (service)",
+          "expr": "sum(rate({job=\"talos-service\",host=~\"$host\", service=~\"$service\"} |= \"$filter\" [1m])) by (service)",
           "legendFormat": "{{  service }}",
           "queryType": "range",
           "refId": "A"
@@ -178,7 +178,7 @@
             "uid": "${DS_LOKI}"
           },
           "editorMode": "code",
-          "expr": "{source=\"talos_service\", host=~\"$host\",service=~\"$service\"} | json | line_format \"{{.service}}@{{.host}}: {{.msg}}\"  |= \"$filter\"",
+          "expr": "{job=\"talos-service\", host=~\"$host\",service=~\"$service\"} | json | line_format \"{{.service}}@{{.host}}: {{.msg}}\"  |= \"$filter\"",
           "queryType": "range",
           "refId": "A"
         }
@@ -209,7 +209,7 @@
         "query": {
           "label": "host",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"talos_service\"}",
+          "stream": "{job=\"talos-service\"}",
           "type": 1
         },
         "refresh": 2,
@@ -234,7 +234,7 @@
         "query": {
           "label": "service",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{source=\"talos_service\", host=~\"$host\"}",
+          "stream": "{job=\"talos-service\", host=~\"$host\"}",
           "type": 1
         },
         "refresh": 2,
