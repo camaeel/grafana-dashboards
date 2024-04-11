@@ -772,7 +772,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate({source=\"kubernetes_logs\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\" } | logfmt| level=~\"$level\" |= \"$filter\" [5m])) by (level)",
+          "expr": "sum(rate({job=\"kubernetes-logs\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\" } | logfmt| level=~\"$level\" |= \"$filter\" [5m])) by (level)",
           "intervalFactor": 3,
           "legendFormat": "{{level}}",
           "refId": "A"
@@ -837,7 +837,7 @@
       },
       "targets": [
         {
-          "expr": "{source=\"kubernetes_logs\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"} | json |  line_format \"{{ .message }}\"  | logfmt | level=~\"$level\" |= \"$filter\"",
+          "expr": "{job=\"kubernetes_logs\", namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"} | json |  line_format \"{{ .message }}\"  | logfmt | level=~\"$level\" |= \"$filter\"",
           "refId": "A"
         }
       ],
