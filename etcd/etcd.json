@@ -1857,13 +1857,14 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
+      "interval": "1m",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(etcd_disk_wal_fsync_duration_seconds_sum[2m]))",
+          "expr": "sum(rate(etcd_disk_wal_fsync_duration_seconds_sum[$__rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "\tThe latency distributions of fsync called by wal",
@@ -1875,7 +1876,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(etcd_disk_backend_commit_duration_seconds_sum[2m]))",
+          "expr": "sum(rate(etcd_disk_backend_commit_duration_seconds_sum[$__rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "The latency distributions of commit called by backend",
@@ -1957,13 +1958,14 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
+      "interval": "1m",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(etcd_network_client_grpc_received_bytes_total[2m]))",
+          "expr": "sum(rate(etcd_network_client_grpc_received_bytes_total[$__rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "The total number of bytes received by grpc clients",
@@ -1975,7 +1977,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(etcd_network_client_grpc_sent_bytes_total[2m]))",
+          "expr": "sum(rate(etcd_network_client_grpc_sent_bytes_total[$__rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "The total number of bytes sent to grpc clients",
@@ -2058,13 +2060,14 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
+      "interval": "1m",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(etcd_debugging_snap_save_total_duration_seconds_sum[2m]))",
+          "expr": "sum(rate(etcd_debugging_snap_save_total_duration_seconds_sum[$__rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "The total latency distributions of save called by snapshot",
